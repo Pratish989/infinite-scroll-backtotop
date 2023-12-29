@@ -1,0 +1,120 @@
+// console.log(document.documentElement) // this is root document element
+// // console.log(document.documentElement.clientHeight) // for this root document we are getting its client height
+
+// console.log(window.innerHeight)
+// console.log(window.innerWidth) // when opening dev tools tab it subtracts that dev tools pixels and gives the exact innerwidth
+
+
+// console.log(document.documentElement.scrollHeight) 
+
+
+
+
+ const showPageItems = (page) => {
+   document.querySelectorAll(".button-class").forEach((button) => {
+     let page = Number(button.id);
+     (page === currentPage) ? button.classList.add("active"): button.classList.remove("active")
+   })
+   const startIndex = (page - 1) * itemsPerPage;
+   const endIndex = page * itemsPerPage;
+   itemsList.innerHTML = totalItems.slice(startIndex, endIndex).map(item => `<li>Item ${item}</li>`).join('');
+ }
+
+
+// when the first load happens then we should show 1 to 10 items and then when user scrolls down it should
+// append next 10 items so that i bevomes 1 to 20 and when the user scrolls to 20 and then scroll again next 10 items should show.
+// infinite scroll with items 
+
+// and should i use scrollend?  
+// do you have any other workflow or any property for that?
+
+// when the first load happens then we should show 1 to 10 items and then when user scrolls down it should
+// append next 10 items so that i bevomes 1 to 20 and when the user scrolls to 20 and then scroll again next 10 items should show.
+// infinite scroll with items 
+
+// and should i use scrollend?  
+// do you have any other workflow or any property for that?
+
+
+
+
+// const createItems=()=>{
+//   const post = document.createElement('div')
+//   const heading = document.createElement('h1')
+//   const text = document.createElement('p')
+  
+//   heading.textContent = "Hockey";
+//   text.textContent = " National Sport of India"
+
+//   post.appendChild(heading)
+//   post.appendChild(text)
+//   itemContainer.appendChild(post)
+// }
+
+// createItems()
+
+const itemContainer = document.getElementById("item-container")
+const totalItems = Array.from({length : 200}, (i,k)=> k +1)
+// scroll height - the height of an element's content, including content not visible on the screen due to overflow.
+
+const itemsOnLoad = 10;
+// console.log(itemsArray)
+
+
+const createItemCard =()=>{
+  const card = document.createElement("div")
+  card.className = card_class;
+
+
+}
+
+const createItems=()=>{
+  let itemUl = document.createElement("ul")
+  itemUl.innerHTML = totalItems.map(i => `<li>Item${i}</li>`).join("")
+  console.log(itemUl)
+  console.log(itemUl)
+  itemContainer.appendChild(itemUl)
+}
+
+window.addEventListener('load', createItems())
+
+
+// const itemContainer = document.getElementById("item-container");
+// const loader = document.getElementsByClassName("loader")
+// const totalItems = 100; 
+// const additionalItems = 10;
+// let loadedItems = 10;
+
+// const divItem = (first,last)=>{
+//   for(let i = first; i<=last; i++){
+//     const card = document.createElement("div")
+//     const text = document.createElement('h1')
+//     card.classList.add("card-item")
+//     text.classList.add("text-item");
+//     text.textContent = `Item ${i}`;
+//     card.appendChild(text);
+//     itemContainer.appendChild(card);
+//   }
+// }
+
+// divItem(1,loadedItems)
+// //innerHeight -> gives interior height of window + height of horizontal scroll bar
+// // scrollY -> gives the number of pixel the document has scrolled vertically
+// // document.body.offsetHeight -> gives the viewable height of an element (padding,border,scrollbar, no margin )
+
+// window.addEventListener("scroll", () => {
+//   if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10 ) {
+//     console.log(loader)
+//     // loader.classList.add('show')
+
+//     // setTimeout(()=>{
+//       loadedItems += additionalItems;
+//       divItem(loadedItems - additionalItems + 1, loadedItems);
+//       // loader.classList.remove('show')
+//     // },2000)
+//       console.log("Items loaded->", loadedItems);
+//   }
+// });
+
+
+

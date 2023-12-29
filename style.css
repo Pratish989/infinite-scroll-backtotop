@@ -1,0 +1,87 @@
+html{
+ scroll-behavior: smooth;
+ 
+}
+
+/* body {
+ align-items: center;
+ justify-content: center;
+} */
+
+.card-item {
+ background-color: rgb(255, 98, 135);
+ height: 80px;
+ width: 250px; 
+ display: inline-block;
+ padding: 20px;
+ margin: 70px;
+ /* justify-content: center; */
+ border-radius: 15px; 
+ border-color: black;
+}
+
+.text-item {
+ text-align: center;
+ color: white;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+#item-container{
+   justify-content: center;   
+   /* text-align:center; */
+}
+
+.scrollToTopBtn {
+ color: #f2f2f2;
+ background-color: #151515;
+ text-decoration: none;
+ border-radius: 25px;
+ position: fixed;
+ outline: none;
+ z-index: 100;
+ opacity: 0;
+ pointer-events: none;
+ padding: 0.75em 1.5em;
+ inset: auto 2em 2em auto;
+ transition: all 250ms ease-in-out;
+}
+
+.isVisible {
+ pointer-events: auto;
+ opacity: 1;
+}
+
+
+
+#loader {
+   position: relative;
+   width: 60px;
+   aspect-ratio: 4;
+   background: radial-gradient(circle closest-side,#000 90%,#0000) 0/calc(100%/3) 100% space;
+   clip-path: inset(0 100% 0 0);
+   animation: l1 1s steps(4) infinite;
+ }
+ @keyframes l1 {to{clip-path: inset(0 -34% 0 0)}}
+
+
+
+ #loader {
+   position: relative;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   width: 60px;
+   aspect-ratio: 4;
+   background: radial-gradient(circle closest-side, #000 90%, #0000) 0/calc(100%/3) 100% space;
+   clip-path: inset(0 100% 0 0);
+   animation: l1 1s steps(4) infinite;
+ }
+ 
+ @keyframes l1 {
+   to {
+     clip-path: inset(0 -34% 0 0);
+   }
+ }
+ 

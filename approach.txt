@@ -1,0 +1,17 @@
+// Approach 1
+// make only 9 divs on one page
+// when user scroll it shows the loader animaition
+// next 9divs should be visible/shown
+// now when the user scrolls up the divs above the current page is visible
+// meaning there are only 9 divs and all the items that are coming should get updated
+
+//issue here -> when user wants to scroll up fast to the page 1 then it should go fast rather than loading the animation(loader)
+
+
+// Approach 2
+// make a main div(item) container
+// the items that are visible right now at the screen will be ther updated at the dom
+
+// issue here-> when user want to scroll up then how fast the dom has to be updated. items will dynamically be added on the DOM.
+
+

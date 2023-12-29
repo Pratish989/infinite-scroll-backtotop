@@ -1,0 +1,127 @@
+// Pseudo-code to give you an idea
+
+// Function to check if an element is in the viewport
+ function isInViewport(element) {
+     const rect = element.getBoundingClientRect();
+     return (
+         rect.top >= 0 &&
+         rect.left >= 0 &&
+         rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+         rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+     );
+ }
+
+// Function to update only visible items
+function updateVisibleItems() {
+    const items = document.querySelectorAll('.your-list-item-class');
+
+    items.forEach((item) => {
+        if (isInViewport(item)) {
+            // Update the item or perform any necessary action
+        }
+    });
+}
+
+// Function to handle the scroll event with debouncing
+function handleScroll() {
+    // Debouncing logic here
+    // Call updateVisibleItems() within the debounced function
+}
+
+// Attach the scroll event listener
+window.addEventListener('scroll', handleScroll);
+
+// Initial call to updateVisibleItems() when the page loads
+updateVisibleItems();
+
+
+
+
+
+
+
+
+
+
+
+
+
+const itemContainer = document.getElementById("item-container");
+const loader = document.getElementById("loader");
+const scrollToTopBtn = document.querySelector(".scrollToTopBtn");
+const totalItems = 100;
+const additionalItems = 10;
+let loadedItems = 20;
+let loading;
+const rootElement = document.documentElement;
+
+const divItem = (first, last) => {
+  for (let i = first; i <= last; i++) {
+    const card = document.createElement("div");
+    const text = document.createElement("h1");
+    card.classList.add("card-item");
+    text.classList.add("text-item");
+    text.textContent = `Item ${i}`;
+    card.appendChild(text);
+    itemContainer.appendChild(card);
+  }
+};
+
+// Function to check if an element is in the viewport
+const isInViewport = (element) => {
+  const rect = element.getBoundingClientRect();
+  return (
+    rect.top >= 0 &&
+    rect.left >= 0 &&
+    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+  );
+};
+
+// Function to update only visible items
+const updateVisibleItems = () => {
+  const items = document.querySelectorAll('.card-item');
+
+  items.forEach((item) => {
+    if (isInViewport(item)) {
+      // Update the item or perform any necessary action
+      // For example: item.textContent = 'Updated Content';
+    }
+  });
+};
+
+//scroll height - overflow part, clientHeight - visible
+window.onload = () => {
+  divItem(1, loadedItems);
+  updateVisibleItems(); // Initial update of visible items
+};
+
+const scrollFunction = () => {
+  const scrollTotal = rootElement.scrollHeight - rootElement.clientHeight;
+  rootElement.scrollTop / scrollTotal > 0.75 ? scrollToTopBtn.classList.add("isVisible") : scrollToTopBtn.classList.remove("isVisible");
+
+  if (
+    window.innerHeight + window.scrollY >= document.body.offsetHeight &&
+    !loading &&
+    loadedItems < totalItems
+  ) {
+    loading = true;
+    setTimeout(() => {
+      loadedItems += additionalItems;
+      if (loadedItems > totalItems) loadedItems = totalItems;
+      divItem(loadedItems - additionalItems + 1, loadedItems);
+      updateVisibleItems(); // Update only the newly added items that are in the viewport
+      loading = false;
+    }, 1500);
+  } else if (loadedItems >= totalItems) {
+    loader.style.display = "none";
+    const endMessage = document.createElement("p");
+    endMessage.textContent = "You have reached the end.";
+    itemContainer.appendChild(endMessage);
+    window.removeEventListener("scroll", scrollFunction);
+  } else {
+    updateVisibleItems(); // Update visible items on regular scroll
+  }
+};
+
+window.addEventListener("scroll", scrollFunction);
